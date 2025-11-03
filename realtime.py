@@ -1,9 +1,7 @@
-import torch
 import cv2
-import numpy as np
+import torch
 
-
-model = torch.hub.load('ultralytics/yolov5', 'yolov5s')
+model = torch.hub.load("ultralytics/yolov5", "yolov5s")
 model.conf = 0.25
 model.iou = 0.45
 model.max_det = 1000
@@ -43,20 +41,12 @@ while True:
 
         x1, y1, x2, y2 = map(int, box)
         cv2.rectangle(frame, (x1, y1), (x2, y2), color, 2)
-        cv2.putText(
-            frame,
-            f"{label}: {classification}",
-            (x1, y1 - 10),
-            cv2.FONT_HERSHEY_SIMPLEX,
-            0.6,
-            color,
-            2
-        )
+        cv2.putText(frame, f"{label}: {classification}", (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, color, 2)
 
     cv2.imshow("Real-Time Detection", frame)
 
     # Exit on pressing 'q'
-    if cv2.waitKey(1) & 0xFF == ord('q'):
+    if cv2.waitKey(1) & 0xFF == ord("q"):
         break
 
 cap.release()
